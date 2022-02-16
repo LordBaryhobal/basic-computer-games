@@ -17,7 +17,7 @@ def end(stdscr):
 def generate_maze(width=20,height=20):
     maze = np.ones([2*height+1, 2*width+1])
 
-    
+
 
     return maze
 
