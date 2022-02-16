@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import random
+import random, time
 
 COLORS = ["Hearts","Diamonds","Spade","Clubs"]
 
@@ -43,6 +43,9 @@ if __name__ == "__main__":
     print("if you type 'stop'.")
     print()
     print()
+    print("Press Enter to begin")
+    input()
+    print()
 
     generate_cards()
 
@@ -51,8 +54,11 @@ if __name__ == "__main__":
         card2 = get_card()
 
         print(f"The first card is: "+card_name(card1))
+        time.sleep(1)
         print(f"The second card is: "+card_name(card2))
+        time.sleep(1)
         print(f"Current balance: {money}")
+        time.sleep(1)
 
         while True:
             bet = input("How much money do you want to bet ? ")
@@ -62,11 +68,13 @@ if __name__ == "__main__":
 
             if not bet.isdecimal():
                 print("Please enter a valid number")
+                time.sleep(0.5)
                 continue
 
             bet = int(bet)
             if bet > money:
                 print("You can't bet more than you have !")
+                time.sleep(0.5)
                 continue
             break
 
@@ -74,7 +82,9 @@ if __name__ == "__main__":
             break
 
         card3 = get_card()
+        time.sleep(1)
         print(f"And the third card is: "+card_name(card3))
+        time.sleep(0.5)
         if (card1[0] < card3[0] < card2[0]) or (card2[0] < card3[0] < card1[0]):
             print(f"Well done ! You won {bet}")
             money += bet
@@ -84,6 +94,7 @@ if __name__ == "__main__":
 
         print()
         print()
+        time.sleep(1)
 
         if money == 0:
             print("It seems you've spent all your money")
