@@ -1,12 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import random, time
+import random, time, sys
 
 COLORS = ["Hearts","Diamonds","Spade","Clubs"]
 
 money = 100
 cards = []
 card1, card2 = None, None
+
+def print(text=""):
+    text += "\n"
+    for c in text:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(0.05)
+    time.sleep(0.5)
 
 def generate_cards():
     global cards
@@ -60,8 +68,9 @@ if __name__ == "__main__":
         print(f"Current balance: {money}")
         time.sleep(1)
 
+        print("How much money do you want to bet ? ")
         while True:
-            bet = input("How much money do you want to bet ? ")
+            bet = input()
             if bet == "stop":
                 running = False
                 break
@@ -85,12 +94,16 @@ if __name__ == "__main__":
         time.sleep(1)
         print(f"And the third card is: "+card_name(card3))
         time.sleep(0.5)
-        if (card1[0] < card3[0] < card2[0]) or (card2[0] < card3[0] < card1[0]):
-            print(f"Well done ! You won {bet}")
-            money += bet
+        if bet == 0:
+            print("No change to your balance")
+
         else:
-            print(f"Oh no, you lost {bet}")
-            money -= bet
+            if (card1[0] < card3[0] < card2[0]) or (card2[0] < card3[0] < card1[0]):
+                print(f"Well done ! You won {bet}")
+                money += bet
+            else:
+                print(f"Oh no, you lost {bet}")
+                money -= bet
 
         print()
         print()
@@ -100,3 +113,7 @@ if __name__ == "__main__":
             print("It seems you've spent all your money")
             print("Maybe next time you'll be more lucky")
             running = False
+
+        elif len(cards) < 3:
+            print("Reshuffling the deck")
+            generate_cards()
