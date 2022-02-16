@@ -22,7 +22,7 @@ def get_card():
     return cards.pop()
 
 def card_name(card):
-    name = str(card[0])
+    name = str(card[0]+1)
 
     if card[0] == 0:
         name = "Ace"
